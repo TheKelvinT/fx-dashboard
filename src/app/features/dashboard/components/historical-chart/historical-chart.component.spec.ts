@@ -139,7 +139,6 @@ describe("HistoricalChartComponent", () => {
     fixture.detectChanges()
     const dayDataLength = component.aggregatedData.length
 
-
     component.timeFrame = "week"
     component.loadData()
     tick()

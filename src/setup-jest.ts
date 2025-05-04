@@ -3,8 +3,8 @@ import "jasmine"
 declare global {
   interface JasmineMatchers {
     toBe(expected: unknown): boolean
-      toBeTruthy(): boolean
-      toHaveBeenCalled(): boolean
+    toBeTruthy(): boolean
+    toHaveBeenCalled(): boolean
     toHaveBeenCalledWith(...args: unknown[]): boolean
   }
 
