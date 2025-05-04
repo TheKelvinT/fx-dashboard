@@ -1,24 +1,28 @@
 import { Component } from "@angular/core"
 import { RouterOutlet } from "@angular/router"
+import { CommonModule } from "@angular/common"
+import { NzLayoutModule } from "ng-zorro-antd/layout"
+import { NzIconModule } from "ng-zorro-antd/icon"
+import { ThemeToggleComponent } from "../theme-toggle/theme-toggle.component"
 
 @Component({
   selector: "app-layout",
   standalone: true,
-  imports: [RouterOutlet],
-  template: `
-    <div class="app-container">
-      <router-outlet></router-outlet>
-    </div>
-  `,
-  styles: [
-    `
-      .app-container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-    `
-  ]
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    NzLayoutModule,
+    NzIconModule,
+    ThemeToggleComponent
+  ],
+  templateUrl: "./layout.component.html",
+  styleUrls: ["./layout.component.scss"]
 })
-export class LayoutComponent {}
+export class LayoutComponent {
+  isCollapsed = false
+  title = "FX Dashboard"
+
+  toggleCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed
+  }
+}
