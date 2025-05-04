@@ -1,0 +1,23 @@
+<nz-layout class="app-layout">
+  <nz-header class="header">
+    <div class="header-container">
+      <div class="left-section">
+        <span class="header-trigger" (click)="toggleCollapsed()">
+          <span
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></span>
+        </span>
+        <span class="header-title">{{ title }}</span>
+      </div>
+      <div class="right-section">
+        <app-theme-toggle></app-theme-toggle>
+      </div>
+    </div>
+  </nz-header>
+  <nz-content>
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+</nz-layout>

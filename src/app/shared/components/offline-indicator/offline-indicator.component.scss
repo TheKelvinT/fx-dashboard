@@ -1,0 +1,21 @@
+.offline-indicator {
+  margin-bottom: 16px;
+
+  ::ng-deep .ant-alert {
+    border-radius: 2px;
+    background-color: rgba(250, 173, 20, 0.1);
+    border-color: var(--warning-color);
+
+    .ant-alert-message {
+      color: var(--text-color);
+    }
+
+    .ant-alert-description {
+      color: var(--text-color-secondary);
+    }
+  }
+}
+
+.last-sync-indicator {
+  height: 0;
+}

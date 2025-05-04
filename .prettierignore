@@ -1,0 +1,27 @@
+# Dependencies
+/node_modules
+/dist
+/.angular
+
+# Build outputs
+/dist
+/coverage
+
+# Environment files
+.env
+.env.*
+
+# IDE specific files
+.idea
+.vscode
+*.swp
+*.swo
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Package files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml 

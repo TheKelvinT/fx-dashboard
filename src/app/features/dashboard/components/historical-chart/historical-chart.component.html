@@ -1,0 +1,93 @@
+<div class="historical-chart-container" data-cy="historical-chart">
+  <div class="chart-header">
+    <div class="time-controls">
+      <nz-radio-group
+        data-cy="timeframe-selector"
+        [(ngModel)]="timeFrame"
+        (ngModelChange)="onTimeFrameChange()"
+      >
+        <label nz-radio-button nzValue="day" data-cy="timeframe-day">Day</label>
+        <label nz-radio-button nzValue="week" data-cy="timeframe-week"
+          >Week</label
+        >
+        <label nz-radio-button nzValue="month" data-cy="timeframe-month"
+          >Month</label
+        >
+      </nz-radio-group>
+    </div>
+
+    <div class="selected-currencies">
+      <ng-container *ngIf="selectedCurrencies.length > 0">
+        <span class="label">Currency pairs:</span>
+        <div class="tags">
+          <nz-tag
+            *ngFor="let currency of selectedCurrencies; let i = index"
+            [nzColor]="colorPalette[i % colorPalette.length]"
+            nzMode="closeable"
+            (nzOnClose)="removeCurrency(currency)"
+            [attr.data-cy]="'currency-tag-' + currency"
+          >
+            {{ baseCurrency }}/{{ currency }}
+          </nz-tag>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="selectedCurrencies.length === 0">
+        <span class="empty-selection"
+          >No currencies selected. Click on currencies in the table to
+          compare.</span
+        >
+      </ng-container>
+    </div>
+  </div>
+
+  <div
+    class="chart-title"
+    *ngIf="selectedCurrencies.length > 0"
+    data-cy="chart-title"
+  >
+    <h3>Exchange Rate Percentage Change</h3>
+    <div class="time-range-info">
+      <span *ngIf="timeFrame === 'day'">Showing past 30 days</span>
+      <span *ngIf="timeFrame === 'week'">Showing past 3 months</span>
+      <span *ngIf="timeFrame === 'month'">Showing past 12 months</span>
+    </div>
+  </div>
+
+  <div class="chart-content">
+    <nz-spin [nzSpinning]="isLoading" data-cy="loading-indicator">
+      <div
+        *ngIf="selectedCurrencies.length > 0"
+        class="chart-container"
+        data-cy="chart-container"
+      >
+        <canvas
+          #chartContainer
+          [attr.id]="chartId"
+          [attr.data-theme]="currentTheme"
+        ></canvas>
+        <div class="chart-legend" data-cy="chart-legend"></div>
+        <button *ngIf="isZoomed" (click)="resetZoom()" data-cy="reset-zoom">
+          Reset Zoom
+        </button>
+      </div>
+
+      <div
+        *ngIf="!isLoading && selectedCurrencies.length === 0"
+        class="empty-state"
+      >
+        <nz-empty
+          nzDescription="Select up to 3 currencies from the table to view historical data"
+        ></nz-empty>
+      </div>
+
+      <div *ngIf="hasError" class="error-state" data-cy="error-message">
+        <span nz-icon nzType="warning" nzTheme="outline"></span>
+        <p>{{ errorMessage }}</p>
+        <button nz-button (click)="retryLoad()" data-cy="retry-button">
+          Retry
+        </button>
+      </div>
+    </nz-spin>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="converter-container" data-cy="currency-converter">
+  <!-- Offline indicator -->
+  <app-offline-indicator></app-offline-indicator>
+
+  <div class="converter-card">
+    <div class="converter-section">
+      <div class="field-label">Amount</div>
+      <div class="amount-field">
+        <input
+          nz-input
+          [(ngModel)]="fromAmount"
+          (ngModelChange)="onFromAmountChange()"
+          type="number"
+          class="amount-input"
+          data-cy="amount-input"
+        />
+        <nz-select
+          [(ngModel)]="fromCurrency"
+          (ngModelChange)="onFromCurrencyChange()"
+          [nzShowSearch]="true"
+          [nzServerSearch]="true"
+          (nzOnSearch)="onSearchFromCurrency($event)"
+          class="currency-select"
+          data-cy="from-currency"
+          [nzDropdownStyle]="{ 'max-height': '300px' }"
+          [nzDropdownMatchSelectWidth]="true"
+        >
+          <nz-option
+            *ngFor="let currency of filteredFromCurrencies"
+            [nzValue]="currency.code"
+            [nzLabel]="currency.code + ' - ' + currency.name"
+            [attr.data-cy]="'currency-option-' + currency.code"
+          >
+            <div class="currency-option">
+              <span class="currency-code">{{ currency.code }}</span>
+              <span class="currency-name">{{ currency.name }}</span>
+            </div>
+          </nz-option>
+        </nz-select>
+      </div>
+    </div>
+
+    <div class="swap-button">
+      <button
+        nz-button
+        nzType="default"
+        (click)="swapCurrencies()"
+        data-cy="swap-button"
+      >
+        <span nz-icon nzType="swap" nzTheme="outline"></span>
+      </button>
+    </div>
+
+    <div class="converter-section">
+      <div class="field-label">Converted to</div>
+      <div class="amount-field">
+        <input
+          nz-input
+          [(ngModel)]="toAmount"
+          (ngModelChange)="onToAmountChange()"
+          type="number"
+          class="amount-input"
+          data-cy="converted-amount"
+        />
+        <nz-select
+          [(ngModel)]="toCurrency"
+          (ngModelChange)="onToCurrencyChange()"
+          [nzShowSearch]="true"
+          [nzServerSearch]="true"
+          (nzOnSearch)="onSearchToCurrency($event)"
+          class="currency-select"
+          data-cy="to-currency"
+        >
+          <ng-container *ngFor="let currency of filteredToCurrencies">
+            <nz-option
+              [nzValue]="currency.code"
+              [nzLabel]="currency.code + ' - ' + currency.name"
+              [attr.data-cy]="'currency-option-' + currency.code"
+            >
+              <div class="currency-option">
+                <span class="currency-code">{{ currency.code }}</span>
+                <span class="currency-name">{{ currency.name }}</span>
+              </div>
+            </nz-option>
+          </ng-container>
+        </nz-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="rate-display" *ngIf="currentRate > 0">
+    <div class="rate-info">
+      <span data-cy="exchange-rate"
+        >{{ "1.000" }} {{ fromCurrency }} = {{ currentRate | number: "1.5-5" }}
+        {{ toCurrency }}</span
+      >
+      <span class="update-time" *ngIf="lastUpdated">
+        Last updated exchange rate at {{ lastUpdated | date: "HH:mm" }}
+        <span
+          nz-icon
+          nzType="info-circle"
+          nz-tooltip
+          nzTooltipTitle="Rates are for information purposes only"
+        ></span>
+        <span
+          *ngIf="!isOnline"
+          class="cached-data-indicator"
+          data-cy="cached-data-indicator"
+          >(cached data)</span
+        >
+      </span>
+    </div>
+  </div>
+</div>

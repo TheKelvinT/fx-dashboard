@@ -1,0 +1,99 @@
+.app-layout {
+  height: 100vh;
+}
+
+.menu-sidebar {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
+
+.sidebar-logo {
+  position: relative;
+  height: 64px;
+  padding-left: 24px;
+  overflow: hidden;
+  line-height: 64px;
+  background: var(--sidebar-dark-bg);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    font-family:
+      Avenir,
+      Helvetica Neue,
+      Arial,
+      Helvetica,
+      sans-serif;
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.header {
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+  background: var(--header-background);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  transition: background-color 0.3s ease;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0;
+  justify-content: space-between;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.header-trigger {
+  padding: 0;
+  width: 64px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  color: var(--text-color);
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.inner-content {
+  padding: 24px;
+  background: var(--body-background);
+  height: 100%;
+  overflow: auto;
+  transition: background-color 0.3s ease;
+}
+
+::ng-deep .ant-layout-sider-trigger {
+  display: none;
+}

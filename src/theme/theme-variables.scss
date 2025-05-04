@@ -1,0 +1,74 @@
+:root {
+  // Base colors
+  --primary-color: #1890ff;
+  --primary-color-hover: #40a9ff;
+  --primary-color-active: #096dd9;
+  --primary-color-outline: rgba(24, 144, 255, 0.2);
+
+  // Text colors
+  --text-color: rgba(0, 0, 0, 0.85);
+  --text-color-secondary: rgba(0, 0, 0, 0.45);
+  --text-color-disabled: rgba(0, 0, 0, 0.25);
+
+  // Background colors
+  --body-background: #f0f2f5;
+  --component-background: #ffffff;
+  --header-background: #ffffff;
+  --sidebar-dark-bg: #001529;
+
+  // Border colors
+  --border-color-base: #d9d9d9;
+  --border-color-split: rgba(0, 0, 0, 0.06);
+
+  // Box shadows
+  --box-shadow-base:
+    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --box-shadow-card:
+    0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+    0 5px 12px 4px rgba(0, 0, 0, 0.09);
+
+  // Chart colors
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #f5222d;
+  --info-color: #1890ff;
+}
+
+// Dark Theme
+[data-theme="dark"] {
+  // Base colors
+  --primary-color: #177ddc;
+  --primary-color-hover: #1f88e5;
+  --primary-color-active: #0958b3;
+  --primary-color-outline: rgba(24, 144, 255, 0.2);
+
+  // Text colors
+  --text-color: rgba(255, 255, 255, 0.85);
+  --text-color-secondary: rgba(255, 255, 255, 0.45);
+  --text-color-disabled: rgba(255, 255, 255, 0.3);
+
+  // Background colors
+  --body-background: #141414;
+  --component-background: #1f1f1f;
+  --header-background: #1f1f1f;
+  --sidebar-dark-bg: #141414;
+
+  // Border colors
+  --border-color-base: #434343;
+  --border-color-split: #303030;
+
+  // Box shadows
+  --box-shadow-base:
+    0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32),
+    0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  --box-shadow-card:
+    0 1px 2px -2px rgba(0, 0, 0, 0.48), 0 3px 6px 0 rgba(0, 0, 0, 0.32),
+    0 5px 12px 4px rgba(0, 0, 0, 0.28);
+
+  // Chart colors
+  --success-color: #49aa19;
+  --warning-color: #d89614;
+  --error-color: #d32029;
+  --info-color: #177ddc;
+}

@@ -1,0 +1,214 @@
+.currency-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.filters-container {
+  margin-bottom: 16px;
+
+  .filter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .field-label {
+      font-size: 14px;
+      color: var(--text-color-secondary);
+      font-weight: 500;
+    }
+
+    .currency-select {
+      width: 100%;
+
+      ::ng-deep {
+        .ant-select-selector {
+          height: 40px;
+          display: flex;
+          align-items: center;
+        }
+
+        .currency-option {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+
+          .currency-code {
+            font-weight: 500;
+          }
+
+          .currency-name {
+            color: var(--text-color-secondary);
+          }
+        }
+      }
+    }
+  }
+}
+
+.filter-label {
+  font-size: 14px;
+  color: var(--text-color);
+  margin-bottom: 0;
+  margin-right: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.currency-select {
+  width: 100%;
+}
+
+.market-data {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep {
+    .ant-table-wrapper,
+    .ant-spin-nested-loading,
+    .ant-spin-container,
+    .ant-table {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .ant-table-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .ant-table-content {
+      flex: 1;
+    }
+
+    .ant-table-body {
+      min-height: 460px;
+    }
+
+    .ant-empty {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 370px;
+      margin: 0;
+    }
+
+    .ant-spin-nested-loading {
+      min-height: 462px;
+    }
+
+    .ant-spin-container {
+      min-height: 462px;
+    }
+
+    .ant-pagination {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      [data-theme="dark"] & {
+        .ant-pagination-item {
+          background-color: var(--component-background);
+
+          a {
+            color: var(--text-color);
+          }
+
+          &-active {
+            background-color: var(--primary-color);
+            a {
+              color: #fff;
+            }
+          }
+        }
+
+        .ant-pagination-item-link {
+          background-color: var(--component-background);
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+}
+
+.currency-table {
+  flex: 1;
+
+  ::ng-deep {
+    .ant-table-tbody > tr {
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: rgba(24, 144, 255, 0.1);
+      }
+
+      &.selected-row {
+        background-color: rgba(24, 144, 255, 0.2);
+
+        &:hover {
+          background-color: rgba(24, 144, 255, 0.3);
+        }
+      }
+    }
+
+    .ant-table-tbody > tr > td {
+      padding: 8px 16px;
+      line-height: 1.2;
+      color: var(--text-color);
+      background-color: var(--component-background);
+    }
+
+    .ant-table-thead > tr > th {
+      padding: 10px 16px;
+      color: var(--text-color);
+      background-color: var(--component-background);
+    }
+  }
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  color: var(--text-color-secondary);
+}
+
+.update-info {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--text-color-secondary);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .last-updated,
+  .next-update,
+  .offline-message {
+    span[nz-icon] {
+      margin-right: 8px;
+    }
+  }
+
+  .cached-data-indicator {
+    margin-left: 4px;
+    color: var(--warning-color);
+    font-style: italic;
+  }
+
+  .offline-message {
+    color: var(--warning-color);
+    font-weight: 500;
+
+    span[nz-icon] {
+      color: var(--warning-color);
+    }
+  }
+}

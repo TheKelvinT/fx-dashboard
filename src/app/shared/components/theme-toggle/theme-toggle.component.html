@@ -1,0 +1,40 @@
+<div class="theme-toggle">
+  <button
+    nz-button
+    nz-dropdown
+    [nzDropdownMenu]="menu"
+    nzPlacement="bottomRight"
+    nzTrigger="click"
+    class="theme-button"
+  >
+    <span nz-icon [nzType]="getThemeIcon()" nzTheme="outline"></span>
+  </button>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu>
+      <li
+        nz-menu-item
+        (click)="setTheme('light')"
+        [nzSelected]="currentTheme === 'light'"
+      >
+        <span nz-icon nzType="sun" nzTheme="outline"></span>
+        <span class="theme-label">Light</span>
+      </li>
+      <li
+        nz-menu-item
+        (click)="setTheme('dark')"
+        [nzSelected]="currentTheme === 'dark'"
+      >
+        <span nz-icon nzType="moon" nzTheme="outline"></span>
+        <span class="theme-label">Dark</span>
+      </li>
+      <li
+        nz-menu-item
+        (click)="setTheme('system')"
+        [nzSelected]="currentTheme === 'system'"
+      >
+        <span nz-icon nzType="laptop" nzTheme="outline"></span>
+        <span class="theme-label">System</span>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

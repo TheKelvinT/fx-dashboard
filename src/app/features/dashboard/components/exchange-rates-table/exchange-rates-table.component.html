@@ -1,0 +1,114 @@
+<div class="currency-content" data-cy="exchange-table">
+  <div class="filters-container">
+    <div class="filter-row">
+      <div class="field-label">Base Currency</div>
+      <nz-select
+        data-cy="base-currency-selector"
+        [(ngModel)]="baseCurrency"
+        (ngModelChange)="updateBaseCurrency($event)"
+        nzShowSearch
+        [nzAllowClear]="false"
+        nzPlaceHolder="Search or select base currency"
+        [nzAutoClearSearchValue]="true"
+        (nzOnSearch)="onSearchDropdown($event)"
+        [nzSuffixIcon]="searchIcon"
+        class="currency-select"
+      >
+        <nz-option
+          *ngFor="let currency of filteredCurrencies"
+          [nzValue]="currency.code"
+          [nzLabel]="currency.code + ' - ' + currency.name"
+          [attr.data-cy]="'currency-option-' + currency.code"
+        >
+          <div class="currency-option">
+            <span class="currency-code">{{ currency.code }}</span>
+            <span class="currency-name">{{ currency.name }}</span>
+          </div>
+        </nz-option>
+      </nz-select>
+      <ng-template #searchIcon>
+        <span nz-icon nzType="search"></span>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="market-data">
+    <nz-table
+      #currencyTable
+      [nzData]="filteredData"
+      [nzFrontPagination]="true"
+      [nzShowPagination]="true"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzTotal]="total"
+      [nzBordered]="false"
+      [nzNoResult]="noDataTemplate"
+      [nzLoading]="isLoading"
+      class="currency-table"
+      data-cy="rates-table"
+    >
+      <thead>
+        <tr>
+          <th
+            nzCustomFilter
+            nzColumnKey="currency"
+            [nzSortFn]="sortByCurrency"
+            [nzWidth]="'50%'"
+            data-cy="sort-by-currency"
+          >
+            Currency
+          </th>
+          <th
+            nzColumnKey="rate"
+            [nzSortFn]="sortByRate"
+            [nzWidth]="'50%'"
+            data-cy="sort-by-rate"
+          >
+            Rate
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let data of currencyTable.data"
+          (click)="toggleCurrencySelection(data.code)"
+          [class.selected-row]="isCurrencySelected(data.code)"
+          [attr.data-cy]="'rate-row-' + data.code"
+        >
+          <td>{{ data.currency }}</td>
+          <td>{{ data.rate | number: "1.4-4" }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <ng-template #noDataTemplate>
+      <div class="no-data">No matching currencies found</div>
+    </ng-template>
+  </div>
+
+  <div class="update-info" *ngIf="lastUpdated">
+    <div class="last-updated">
+      <span
+        nz-icon
+        nzType="loading"
+        [nzSpin]="nextUpdateIn <= 5 && isOnline"
+      ></span>
+      <span data-cy="rate-timestamp"
+        >Last updated: {{ lastUpdated | date: "medium" }}</span
+      >
+      <span *ngIf="!isOnline" class="cached-data-indicator">(cached data)</span>
+    </div>
+    <div class="next-update" *ngIf="isOnline">
+      Next update in: {{ formatCountdown(nextUpdateIn) }}
+    </div>
+    <div class="offline-message" *ngIf="!isOnline">
+      <span nz-icon nzType="disconnect" nzTheme="outline"></span>
+      Offline mode: Auto-update paused
+    </div>
+  </div>
+
+  <div *ngIf="hasError" data-cy="table-error" class="error-state">
+    <span nz-icon nzType="warning" nzTheme="outline"></span>
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>

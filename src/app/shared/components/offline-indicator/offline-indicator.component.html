@@ -1,0 +1,12 @@
+<div class="offline-indicator" *ngIf="!isOnline">
+  <nz-alert
+    nzType="warning"
+    nzMessage="You are currently offline"
+    nzDescription="You're viewing cached data. Connect to the internet for the latest updates."
+    nzShowIcon
+  ></nz-alert>
+</div>
+
+<div class="last-sync-indicator" *ngIf="isOnline">
+  <!-- This is intentionally empty and only takes space in the DOM when online -->
+</div>
