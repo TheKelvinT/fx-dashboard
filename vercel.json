@@ -1,22 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "dist/**/*",
-      "use": "@vercel/static"
-    }
-  ],
+  "public": false,
+  "builds": [],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/dist/fx-dashboard/$1"
-    },
     {
       "handle": "filesystem"
     },
     {
       "src": "/.*",
-      "dest": "/dist/fx-dashboard/index.html"
+      "dest": "/index.html"
     }
   ]
 }
