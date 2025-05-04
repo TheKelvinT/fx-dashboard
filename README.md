@@ -67,7 +67,6 @@ concerns:
 src/
 ├── app/
 │   ├── core/                # Core functionality used across the app
-│   │   ├── interceptors/    # HTTP Interceptors
 │   │   └── services/        # Core services (forex, offline, etc.)
 │   ├── features/            # Feature modules
 │   │   └── dashboard/       # Dashboard feature module
@@ -115,18 +114,6 @@ src/
    - HTTP interceptors
    - Global error handling
 
-### Design Patterns & Best Practices
-
-- **Feature Module Pattern**: Organizing code by feature for better
-  maintainability
-- **Container/Presenter Pattern**: Clear separation of smart and presentational
-  components
-- **Facade Pattern**: Service facades for encapsulating complex business logic
-- **Repository Pattern**: Data access layer abstraction
-- **SOLID Principles**: Emphasis on single responsibility and dependency
-  injection
-- **Reactive Forms**: For complex form handling with validation
-- **Change Detection Strategy**: OnPush for optimal performance
 
 ## Testing Strategy
 
@@ -138,7 +125,7 @@ src/
   - Currency selection flows
   - Basic error scenarios
 
-- **Unit Tests**:
+- **Unit Tests** (Karma/Jasmine):
   - Core component initialization
   - Basic service functionality
 
@@ -186,13 +173,6 @@ npm start
 - `npm run lint`: ESLint code analysis
 - `npm run format`: Prettier code formatting
 
-## Performance Optimization
-
-- Lazy loading of feature modules
-- Virtual scrolling for large data sets
-- OnPush change detection strategy
-- Service worker for offline support
-- Asset optimization and lazy image loading
 
 ## Error Handling
 
@@ -204,7 +184,7 @@ npm start
 
 ## Future Improvements
 
-### High Priority (Next Sprint)
+### High Priority
 
 1. **Offline Capability Enhancement**:
 
@@ -245,10 +225,6 @@ npm start
    - Limited edge case testing
    - Manual performance testing only
 
-## Contributing
-
-Please read CONTRIBUTING.md for details on our code of conduct and the process
-for submitting pull requests.
 
 ## License
 
