@@ -5,7 +5,7 @@ import { NzDropDownModule } from "ng-zorro-antd/dropdown"
 import { NzIconModule } from "ng-zorro-antd/icon"
 import { NzButtonModule } from "ng-zorro-antd/button"
 import { NzMenuModule } from "ng-zorro-antd/menu"
-import { ThemeService, Theme } from "../../../services/theme/theme.service"
+import { ThemeService, Theme } from "../../../core/services/theme/theme.service"
 
 @Component({
   selector: "app-theme-toggle",
@@ -28,7 +28,7 @@ export class ThemeToggleComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentTheme = this.themeService.currentTheme
-    this.themeService.theme$.subscribe((theme) => {
+    this.themeService.theme$.subscribe((theme: Theme) => {
       this.currentTheme = theme
     })
   }
