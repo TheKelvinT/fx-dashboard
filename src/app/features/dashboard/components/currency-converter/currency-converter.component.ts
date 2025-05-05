@@ -1,3 +1,5 @@
+import { ScrollingModule } from "@angular/cdk/scrolling"
+import { CommonModule } from "@angular/common"
 import {
   Component,
   Input,
@@ -5,21 +7,18 @@ import {
   OnInit,
   SimpleChanges
 } from "@angular/core"
-import { CommonModule } from "@angular/common"
 import { FormsModule } from "@angular/forms"
-import { NzInputModule } from "ng-zorro-antd/input"
 import { NzButtonModule } from "ng-zorro-antd/button"
-import { NzSelectModule } from "ng-zorro-antd/select"
 import { NzCardModule } from "ng-zorro-antd/card"
 import { NzIconModule } from "ng-zorro-antd/icon"
+import { NzInputModule } from "ng-zorro-antd/input"
+import { NzSelectModule } from "ng-zorro-antd/select"
 import { NzToolTipModule } from "ng-zorro-antd/tooltip"
-import { ScrollingModule } from "@angular/cdk/scrolling"
-import { Currency } from "../../../../models/currency.model"
-import { OfflineForexService } from "../../../../core/services/offline/offline-forex.service"
-import { ConnectionService } from "../../../../core/services/offline/connection.service"
-import { OfflineIndicatorComponent } from "../../../../shared/components/offline-indicator/offline-indicator.component"
-import { ForexService } from "../../../../core/services/forex.service"
 import { DEFAULT_CURRENCY } from "../../../../constants/currency.constants"
+import { ForexService } from "../../../../core/services/forex.service"
+import { ConnectionService } from "../../../../core/services/offline/connection.service"
+import { OfflineForexService } from "../../../../core/services/offline/offline-forex.service"
+import { Currency } from "../../../../models/currency.model"
 
 @Component({
   selector: "app-currency-converter",
@@ -33,8 +32,7 @@ import { DEFAULT_CURRENCY } from "../../../../constants/currency.constants"
     NzCardModule,
     NzIconModule,
     NzToolTipModule,
-    ScrollingModule,
-    OfflineIndicatorComponent
+    ScrollingModule
   ],
   templateUrl: "./currency-converter.component.html",
   styleUrls: ["./currency-converter.component.scss"]
@@ -74,7 +72,6 @@ export class CurrencyConverterComponent implements OnInit, OnChanges {
     })
 
     if (this.currencies.length > 0) {
-      console.log("Initial currencies:", this.currencies)
       this.initializeFilters()
       this.loadExchangeRate()
     }
@@ -82,7 +79,6 @@ export class CurrencyConverterComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["currencies"] && this.currencies.length > 0) {
-      console.log("Updated currencies:", this.currencies)
       this.initializeFilters()
       this.loadExchangeRate()
     }
@@ -91,7 +87,6 @@ export class CurrencyConverterComponent implements OnInit, OnChanges {
   initializeFilters(): void {
     this.filteredFromCurrencies = [...this.currencies]
     this.filteredToCurrencies = [...this.currencies]
-    console.log("Filtered currencies:", this.filteredFromCurrencies)
   }
 
   loadExchangeRate(): void {
@@ -164,23 +159,19 @@ export class CurrencyConverterComponent implements OnInit, OnChanges {
   }
 
   onSearchFromCurrency(value: string): void {
-    console.log("Searching from currency:", value)
     this.filteredFromCurrencies = this.currencies.filter(
       (item) =>
         item.code.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
         item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
     )
-    console.log("Filtered from currencies:", this.filteredFromCurrencies)
   }
 
   onSearchToCurrency(value: string): void {
-    console.log("Searching to currency:", value)
     this.filteredToCurrencies = this.currencies.filter(
       (item) =>
         item.code.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
         item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
     )
-    console.log("Filtered to currencies:", this.filteredToCurrencies)
   }
 
   getCountryFlag(currencyCode: string): string {

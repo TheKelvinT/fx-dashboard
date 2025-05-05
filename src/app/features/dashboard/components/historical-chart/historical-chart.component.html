@@ -43,7 +43,7 @@
 
   <div
     class="chart-title"
-    *ngIf="selectedCurrencies.length > 0"
+    *ngIf="selectedCurrencies.length > 0 && !hasError"
     data-cy="chart-title"
   >
     <h3>Exchange Rate Percentage Change</h3>
@@ -56,8 +56,9 @@
 
   <div class="chart-content">
     <nz-spin [nzSpinning]="isLoading" data-cy="loading-indicator">
+      <!-- Chart container - Only show when no error and currencies are selected -->
       <div
-        *ngIf="selectedCurrencies.length > 0"
+        *ngIf="selectedCurrencies.length > 0 && !hasError"
         class="chart-container"
         data-cy="chart-container"
       >
@@ -72,8 +73,9 @@
         </button>
       </div>
 
+      <!-- Empty state - Only show when no error and no currencies selected -->
       <div
-        *ngIf="!isLoading && selectedCurrencies.length === 0"
+        *ngIf="!isLoading && selectedCurrencies.length === 0 && !hasError"
         class="empty-state"
       >
         <nz-empty
@@ -83,7 +85,7 @@
 
       <div *ngIf="hasError" class="error-state" data-cy="error-message">
         <span nz-icon nzType="warning" nzTheme="outline"></span>
-        <p>{{ errorMessage }}</p>
+        <p>{{ errorMessage || "Failed to load historical data" }}</p>
         <button nz-button (click)="retryLoad()" data-cy="retry-button">
           Retry
         </button>
